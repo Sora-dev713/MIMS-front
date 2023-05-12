@@ -7,6 +7,7 @@ const Inventario = () => {
     const [productos, setProductos] = useState([]);
     const [cantidad, setCantidad] = useState(0);
     const [precio, setPrecio] = useState(0);
+    const [productoReal, setProductoReal] = useState([]);
     const [producto, setProducto] = useState({
         id: null,
         id_joya: null,
@@ -17,10 +18,10 @@ const Inventario = () => {
         id_tipo_joya: null,
     });
 
-    const getProducto = async (id) => {
+    const getProductoReal = async (id) => {
         try {
             const res = await axios.get('http://localhost:8080/inventario/' + id);
-            setProducto(res.data);
+            setProductoReal(res.data);
         }
         catch (error) {
             console.log(error);
@@ -37,23 +38,10 @@ const Inventario = () => {
         }
     }
 
-    const retrieveReal = async (producto) => {
+    const handleUpdate = async (productoReal) => {
         try {
-            let url = 'http://localhost:8080/inventario/' + producto.id;
-            const res = await axios.get(url);
-            if(res.status === 200){ 
-                setProducto(res.data);
-            } 
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-
-    const handleUpdate = async (p) => {
-        try {
-            let url = 'http://localhost:8080/inventario/' + p.id;
-            const res = await axios.put(url, p);
+            let url = 'http://localhost:8080/inventario/' + productoReal.id;
+            const res = await axios.put(url, productoReal);
             if (res.status === 200) {
                 getProductos();
             }
@@ -63,16 +51,16 @@ const Inventario = () => {
         }
     }
 
-    const handleChangeplus = async (id) => {
-            p = getProducto(id);
-            p.cantidad = p.cantidad + 1;
-            handleUpdate(p);
+    const handleChangeplus = (producto) => {
+        getProductoReal(producto.id);
+        productoReal.cantidad = productoReal.cantidad + 1;
+        handleUpdate(productoReal);
     }
 
-    const handleChangeless = async (id) => {
-        p = getProducto(id);
-        p.cantidad = p.cantidad - 1;
-        handleUpdate(p);
+    const handleChangeless = (producto) => {
+        getProductoReal(producto.id);
+        productoReal.cantidad = productoReal.cantidad - 1;
+        handleUpdate(productoReal);
     }
 
     useEffect(() => {
