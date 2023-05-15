@@ -1,10 +1,10 @@
-
 import { Table, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './Inventario.css';
 
 const Inventario = () => {
     const [productos, setProductos] = useState([]);
@@ -63,7 +63,7 @@ const Inventario = () => {
     }, []);
   
     return (
-        <Container style={{ marginTop: '50px', textAlign: 'center' }}>
+        <Container style={{ marginTop: '50px', textAlign: 'center' }} className="container">
             <h1 style={{ fontSize: '48px' }}>Inventario</h1>
             <Row style={{ marginTop: '20px' }}>
         <Col>
@@ -71,9 +71,9 @@ const Inventario = () => {
           <Button variant="danger">Eliminar</Button>
         </Col>
       </Row>
-            <Table bordered hover style={{ marginTop: '20px' }}>
-            <thead>
-                <tr>
+            <Table bordered hover style={{ marginTop: '20px' }} className='table_productos'>
+            <thead >
+                <tr className='cabeceras'>
                     <th>#</th>
                     <th>Local</th>
                     <th>Cantidad</th>
