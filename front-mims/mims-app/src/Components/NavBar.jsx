@@ -30,7 +30,7 @@ export default BasicExample;
 
 import { Link, useLocation } from 'react-router-dom';
 import './navbar.css';
-import logo from '../images/logo.png';
+import logo from '../images/logo-letras.png';
 import image_user from '../images/user.png';
 
 const Navbar = () => {
