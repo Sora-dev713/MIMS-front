@@ -10,6 +10,9 @@ function App() {
       <Container>
         <Routes>
           <Route path="/inventario" element={<Inventario />} />
+          <Route path="/locaciones" element={<Inventario />} />
+          <Route path="/tipos-de-joya" element={<Inventario />} />
+          <Route path="/joyas" element={<Inventario />} />
         </Routes>
       </Container>
     </Layout>
